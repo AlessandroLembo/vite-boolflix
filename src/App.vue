@@ -1,5 +1,8 @@
 <script>
 import axios from 'axios';
+import { baseUri } from './data';
+import { apiKey } from './data';
+import { store } from './data/store.js';
 import AppHeader from './components/AppHeader.vue';
 
 export default {
@@ -7,24 +10,22 @@ export default {
     components: { AppHeader },
     data() {
         return {
-            movies: [],
-            series: [],
-            baseUri: 'https://api.themoviedb.org/3/',
-            apiKey: 'dd9b1073e48ec92b6d25fb7c351682de',
-            isLoading: false
+            store,
+            // movies: [],
+            // series: [],
+            // baseUri: 'https://api.themoviedb.org/3/',
+            // apiKey: 'dd9b1073e48ec92b6d25fb7c351682de'
         }
     },
     methods: {
         getFilteredContent(content) {
-
-            axios.get(`${this.baseUri}/search/movie?api_key=${this.apiKey}&query=${content}&language=IT-it`)
+            axios.get(`${baseUri}/search/movie?api_key=${apiKey}&query=${content}&language=IT-it`)
                 .then((res) => {
-                    this.movies = res.data.results
-                });
-
-            axios.get(`${this.baseUri}/search/tv?api_key=${this.apiKey}&query=${content}&language=IT-it`)
+                    store.movies = res.data.results
+                })
+            axios.get(`${baseUri}/search/tv?api_key=${apiKey}&query=${content}&language=IT-it`)
                 .then((res) => {
-                    this.series = res.data.results
+                    store.series = res.data.results
                 })
 
         }
@@ -36,7 +37,7 @@ export default {
 <template>
     <app-header @filter-content="getFilteredContent"></app-header>
     <ul>
-        <li v-for="movie in movies" :key="movie.id">
+        <li v-for="movie in store.movies" :key="movie.id">
             <h1> {{ movie.original_title }} </h1>
             <p v-if="movie.title !== movie.original_title"> {{ movie.title }} </p>
             <figure>
@@ -49,7 +50,7 @@ export default {
         </li>
     </ul>
     <ul>
-        <li v-for="serie in series" :key="serie.id">
+        <li v-for="serie in store.series" :key="serie.id">
             <h1> {{ serie.name }} </h1>
 
         </li>
