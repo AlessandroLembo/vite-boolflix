@@ -1,5 +1,6 @@
 <script>
 export default {
+    name: 'SearchContent',
     data() {
         return {
             searchValue: ''
