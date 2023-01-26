@@ -11,10 +11,12 @@ export default {
             series: [],
             baseUri: 'https://api.themoviedb.org/3/',
             apiKey: 'dd9b1073e48ec92b6d25fb7c351682de',
+            isLoading: false
         }
     },
     methods: {
         getFilteredContent(content) {
+
             axios.get(`${this.baseUri}/search/movie?api_key=${this.apiKey}&query=${content}&language=IT-it`)
                 .then((res) => {
                     this.movies = res.data.results
