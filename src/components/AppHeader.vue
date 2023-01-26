@@ -6,16 +6,17 @@ export default {
 
     methods: {
         fetchChoosenMovies() {
-            axios.get(() => {
+            // axios.get(() => {
 
-            })
+            // })
+            console.log('ciao');
         }
     }
 }
 </script>
 
 <template>
-    <search-content></search-content>
+    <search-content @start-research="fetchChoosenMovies()"></search-content>
 </template>
 
 <style>

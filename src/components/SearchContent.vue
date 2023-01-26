@@ -4,14 +4,16 @@ export default {
         return {
             searchValue: ''
         }
-    }
+    },
+
+    emits: ['start-research']
 }
 </script>
 
 <template>
     <!-- <form> -->
     <input type="text" v-model="searchValue">
-    <button type="submit">Search</button>
+    <button type="submit" @click="$emit('start-research')">Search</button>
     <!-- </form> -->
 </template>    
 
