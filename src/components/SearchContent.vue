@@ -13,7 +13,7 @@ export default {
 <template>
     <!-- <form> -->
     <input type="text" v-model="searchValue">
-    <button type="submit" @click="$emit('start-research')">Search</button>
+    <button type="submit" @click="$emit('start-research', searchValue)">Search</button>
     <!-- </form> -->
 </template>    
 
