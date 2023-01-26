@@ -10,6 +10,7 @@ export default {
             apiKey: 'dd9b1073e48ec92b6d25fb7c351682de'
         }
     },
+
     methods: {
         fetchChoosenMovies(item) {
             axios.get(`${this.baseUri}/search/movie?api_key=${this.apiKey}&query=${item}&language=IT-it`)
@@ -17,6 +18,7 @@ export default {
                     this.movies = res.data.results
                 })
         },
+
 
     },
 
