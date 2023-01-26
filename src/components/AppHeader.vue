@@ -5,16 +5,17 @@ export default {
     components: { SearchContent },
     data() {
         return {
-            result: []
+            result: [],
+            baseUri: 'https://api.themoviedb.org/3/',
+            apiKey: 'dd9b1073e48ec92b6d25fb7c351682de'
         }
     },
     methods: {
         fetchChoosenMovies(item) {
-            axios.get(`{{baseUri}}/search/movie?api_key={{api_key}}&query=${item}&language=IT-it`)
+            axios.get(`${this.baseUri}/search/movie?api_key=${this.apiKey}&query=${item}&language=IT-it`)
                 .then((res) => {
                     this.result = res.data.results
                 })
-            // console.log('ciao');
         }
     },
 
