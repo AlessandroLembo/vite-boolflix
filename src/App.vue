@@ -3,7 +3,8 @@ import axios from 'axios';
 import AppHeader from './components/AppHeader.vue';
 
 export default {
-    components: { AppHeader }
+    components: { AppHeader },
+
 }
 </script>
 
