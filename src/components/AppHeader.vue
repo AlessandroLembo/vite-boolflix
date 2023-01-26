@@ -28,7 +28,7 @@ export default {
     <ul>
         <li v-for="movie in movies" :key="movie.id">
             <h1> {{ movie.original_title }} </h1>
-            <p> {{ movie.title }} </p>
+            <p v-if="movie.title !== movie.original_title"> {{ movie.title }} </p>
             <p> {{ movie.original_language }} </p>
             <p> {{ movie.vote_average }} </p>
         </li>
