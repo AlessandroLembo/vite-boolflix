@@ -36,6 +36,7 @@ export default {
 
 <template>
     <app-header @filter-content="getFilteredContent"></app-header>
+    <font-awesome-icon icon="fa-solid fa-star" />
     <ul>
         <li v-for="movie in store.movies" :key="movie.id">
             <h1> {{ movie.original_title }} </h1>
@@ -58,6 +59,6 @@ export default {
 
 </template>
 
-<style>
+<style lang="scss">
 
 </style>
