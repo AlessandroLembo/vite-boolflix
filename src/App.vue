@@ -18,20 +18,27 @@ export default {
         }
     },
     methods: {
+
         getFilteredContent(content) {
-            axios.get(`${baseUri}/search/movie?api_key=${apiKey}&query=${content}&language=IT-it`)
-                .then((res) => {
-                    store.movies = res.data.results
-                })
-            axios.get(`${baseUri}/search/tv?api_key=${apiKey}&query=${content}&language=IT-it`)
-                .then((res) => {
-                    store.series = res.data.results
-                })
+            store.isLoading = true;
+            if (!content) {
+                store.movies = [];
+                store.series = [];
+            } else {
+                axios.get(`${baseUri}/search/movie?api_key=${apiKey}&query=${content}&language=IT-it`)
+                    .then((res) => {
+                        store.movies = res.data.results
+                    }).catch(err => { console.error(err) });
+                axios.get(`${baseUri}/search/tv?api_key=${apiKey}&query=${content}&language=IT-it`)
+                    .then((res) => {
+                        store.series = res.data.results
+                    }).catch(err => { console.error(err) });
+            }
 
         }
     }
-
 }
+
 </script>
 
 <template>
@@ -60,5 +67,7 @@ export default {
 </template>
 
 <style lang="scss">
-
+.fa-star {
+    color: yellow;
+}
 </style>
