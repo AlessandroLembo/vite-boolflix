@@ -15,6 +15,14 @@ export default {
             // series: [],
             // baseUri: 'https://api.themoviedb.org/3/',
             // apiKey: 'dd9b1073e48ec92b6d25fb7c351682de'
+
+            fetchApi: {
+                searchMovies: 'search/movies',
+                movies: 'movies',
+                searchSeries: 'search/tv',
+                series: 'series'
+            },
+
         }
     },
     methods: {
@@ -28,11 +36,18 @@ export default {
                 axios.get(`${baseUri}/search/movie?api_key=${apiKey}&query=${content}&language=IT-it`)
                     .then((res) => {
                         store.movies = res.data.results
-                    }).catch(err => { console.error(err) });
+                    }).catch(err => { console.error(err) })
+                    .then(() => { store.isLoading = false });
                 axios.get(`${baseUri}/search/tv?api_key=${apiKey}&query=${content}&language=IT-it`)
                     .then((res) => {
                         store.series = res.data.results
-                    }).catch(err => { console.error(err) });
+                    }).catch(err => { console.error(err) })
+                    .then(() => { store.isLoading = false });
+                // axios.get(`${baseUri}/search/tv?api_key=${apiKey}&query=${content}&language=IT-it`)
+                //     .then((res) => {
+                //         store.series = res.data.results
+                //     }).catch(err => { console.error(err) })
+                //     .then(() => { store.isLoading = false })
             }
 
         }
@@ -43,31 +58,38 @@ export default {
 
 <template>
     <app-header @filter-content="getFilteredContent"></app-header>
-    <font-awesome-icon icon="fa-solid fa-star" />
-    <ul>
-        <li v-for="movie in store.movies" :key="movie.id">
-            <h1> {{ movie.original_title }} </h1>
-            <p v-if="movie.title !== movie.original_title"> {{ movie.title }} </p>
+    <h1>MOVIES</h1>
+    <ul v-for="movie in store.movies" :key="movie.id">
+        <li>LISTA</li>
+        <li>{{ movie.original_title }}</li>
+        <li v-if="movie.title !== movie.original_title">{{ movie.title }}</li>
+        <li>
             <figure>
                 <img v-if="movie.original_language === 'en'" src="./assets/flags/en.png" alt="en">
                 <img v-else-if="movie.original_language === 'it'" src="./assets/flags/it.png" alt="it">
                 <p v-else> {{ movie.original_language }} </p>
             </figure>
-            <p> {{ movie.vote_average }} </p>
-
         </li>
+        <li>{{ movie.vote_average }}</li>
     </ul>
-    <ul>
-        <li v-for="serie in store.series" :key="serie.id">
-            <h1> {{ serie.name }} </h1>
 
+    <h1>SERIE TV</h1>
+    <ul v-for="serie in store.series" :key="serie.id">
+        <li>LISTA</li>
+        <li>{{ serie.original_name }} </li>
+        <li v-if="serie.name !== serie.original_name"> {{ serie.name }} </li>
+        <li>
+            <figure>
+                <img v-if="serie.original_language === 'en'" src="./assets/flags/en.png" alt="en">
+                <img v-else-if="serie.original_language === 'it'" src="./assets/flags/it.png" alt="it">
+                <p v-else> {{ serie.original_language }} </p>
+            </figure>
         </li>
+        <li>{{ serie.vote_average }}</li>
     </ul>
 
 </template>
 
-<style lang="scss">
-.fa-star {
-    color: yellow;
-}
+<style>
+
 </style>

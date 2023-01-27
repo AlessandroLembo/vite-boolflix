@@ -7,15 +7,20 @@ export default {
         }
     },
 
+    props: {
+        placeholder: String,
+        buttonLabel: String
+    },
+
     emits: ['start-research', 'filter-content']
 }
 </script>
 
 <template>
-    <!-- <form> -->
-    <input type="text" v-model="searchValue">
-    <button type="submit" @click="$emit('start-research', searchValue)">Search</button>
-    <!-- </form> -->
+    <form>
+        <input type="text" v-model="searchValue" :placeholder="placeholder || 'Search'">
+        <button type="submit" @click="$emit('start-research', searchValue)"> {{ buttonLabel || 'Search' }} </button>
+    </form>
 </template>    
 
 <style>
