@@ -7,7 +7,7 @@ export default {
         }
     },
 
-    emits: ['start-research']
+    emits: ['start-research', 'filter-content']
 }
 </script>
 
