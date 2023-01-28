@@ -4,15 +4,21 @@ export default {
     name: 'AppHeader',
     components: { SearchContent },
     methods: {
-        fetchChoosenContent(word) {
-            this.$emit('filter-content', word);
+        askFilterContent() {
+            this.$emit('start-research');
+        },
+
+        changeWord(prod) {
+            this.$emit('word-change', prod);
         }
-    }
+    },
+
+    emits: ['start-research', 'word-change']
 }
 </script>
 
 <template>
-    <search-content @start-research="fetchChoosenContent"></search-content>
+    <search-content @start-research="askFilterContent" @word-change="changeWord"></search-content>
 
 </template>
 
