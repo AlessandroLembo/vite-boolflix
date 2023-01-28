@@ -31,25 +31,31 @@ export default {
 
     methods: {
 
-        getFilteredContent(content) {
+        onContentFilterChange(prod) {
+            this.titleFilter = prod
+        },
+
+        fetchFilteredContent(content) {
             // store.isLoading = true;
             if (!content) {
                 store.movies = [];
                 store.series = [];
                 return;
             }
-            // axios.get(`${baseUri}/search/movie?api_key=${apiKey}&query=${content}&language=IT-it`)
-            //     .then((res) => {
-            //         store.movies = res.data.results
-            //     }).catch(err => { console.error(err) })
-            //     .then(() => { store.isLoading = false });
-            axios.get(`${baseUri}/search/tv?api_key=${apiKey}&query=${content}&language=IT-it`)
+
+            this.fetchApi('search/movie', 'movies');
+            this.fetchApi('search/tv', 'series')
+
+        },
+
+        fetchApi(endpoint, product) {
+            axios.get(`${api.baseUri}/${endpoint}`, this.axiosConfig)
                 .then((res) => {
-                    store.series = res.data.results
+                    store[product] = res.data.results
                 }).catch(err => { console.error(err) })
                 .then(() => { store.isLoading = false });
 
-        },
+        }
 
     }
 }
@@ -57,7 +63,8 @@ export default {
 </script>
 
 <template>
-    <app-header @filter-content="getFilteredContent"></app-header>
+    <app-header @word-change="onContentFilterChange" placeholder="Search content"
+        @start-research="fetchFilteredContent"></app-header>
     <h1>MOVIES</h1>
     <ul v-for="movie in store.movies" :key="movie.id">
         <li>LISTA</li>
@@ -72,21 +79,6 @@ export default {
         </li>
         <li>{{ movie.vote_average }}</li>
     </ul>
-
-    <!-- <h1>SERIE TV</h1>
-    <ul v-for="serie in store.series" :key="serie.id">
-        <li>LISTA</li>
-        <li>{{ serie.original_name }} </li>
-        <li v-if="serie.name !== serie.original_name"> {{ serie.name }} </li>
-        <li>
-            <figure>
-                <img v-if="serie.original_language === 'en'" src="./assets/flags/en.png" alt="en">
-                <img v-else-if="serie.original_language === 'it'" src="./assets/flags/it.png" alt="it">
-                <p v-else> {{ serie.original_language }} </p>
-            </figure>
-        </li>
-        <li>{{ serie.vote_average }}</li>
-    </ul> -->
 
 </template>
 
