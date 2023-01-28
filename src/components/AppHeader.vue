@@ -8,7 +8,6 @@ export default {
             this.$emit('filter-content', word);
         }
     }
-
 }
 </script>
 

@@ -3,7 +3,7 @@ export default {
     name: 'SearchContent',
     data() {
         return {
-            searchValue: ''
+            searchValue: '',
         }
     },
 
@@ -12,14 +12,15 @@ export default {
         buttonLabel: String
     },
 
-    emits: ['start-research', 'filter-content']
+    emits: ['word-change', 'start-research']
 }
 </script>
 
 <template>
-    <form>
-        <input type="text" v-model="searchValue" :placeholder="placeholder || 'Search'">
-        <button type="submit" @click="$emit('start-research', searchValue)"> {{ buttonLabel || 'Search' }} </button>
+    <form @submit.prevent="$emit('start-research')">
+        <input type="text" v-model.trim="searchValue" @keyup="$emit('word-change', searchValue)"
+            :placeholder="placeholder || 'Search'">
+        <button type="submit"> {{ buttonLabel || 'Search' }} </button>
     </form>
 </template>    
 
