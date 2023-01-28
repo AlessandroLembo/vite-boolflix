@@ -3,18 +3,14 @@ import axios from 'axios';
 import { api } from '.data';
 import { store } from './data/store.js';
 import AppHeader from './components/AppHeader.vue';
+import ProdCard from './components/ProdCard.vue';
 
 export default {
     name: 'App',
-    components: { AppHeader },
+    components: { AppHeader, ProdCard },
     data() {
         return {
             store,
-            // movies: [],
-            // series: [],
-            // baseUri: 'https://api.themoviedb.org/3/',
-            // apiKey: 'dd9b1073e48ec92b6d25fb7c351682de'
-
             fetchApi: {
                 searchMovies: 'search/movies',
                 movies: 'movies',
@@ -42,11 +38,7 @@ export default {
                         store.series = res.data.results
                     }).catch(err => { console.error(err) })
                     .then(() => { store.isLoading = false });
-                // axios.get(`${baseUri}/search/tv?api_key=${apiKey}&query=${content}&language=IT-it`)
-                //     .then((res) => {
-                //         store.series = res.data.results
-                //     }).catch(err => { console.error(err) })
-                //     .then(() => { store.isLoading = false })
+
             }
 
         }
