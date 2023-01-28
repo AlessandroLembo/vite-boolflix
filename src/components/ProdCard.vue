@@ -31,7 +31,10 @@ export default {
     <ul>
         <li>{{ title }}</li>
         <li v-if="title !== original_title">{{ original_title }}</li>
-
+        <li>
+            <img v-if="hasFlag" :src="flagSrc" :alt="production.original_language">
+            <p v-else>{{ production.original_language }}</p>
+        </li>
         <li>{{ production.vote_average }}</li>
 
     </ul>

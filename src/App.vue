@@ -1,6 +1,6 @@
 <script>
 import axios from 'axios';
-import { api } from '.data';
+import { api } from './data/index.js';
 import { store } from './data/store.js';
 import AppHeader from './components/AppHeader.vue';
 import ProdCard from './components/ProdCard.vue';
