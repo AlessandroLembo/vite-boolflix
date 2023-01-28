@@ -4,6 +4,13 @@ export default {
     props: {
         production: Object
     },
+
+    data() {
+        return {
+            baseURL: 'https://image.tmdb.org/t/p/'
+        }
+    },
+
     computed: {
         title() {
             return this.production.title || this.production.name;
@@ -29,6 +36,7 @@ export default {
 <template>
     <ul>
         <li>{{ title }}</li>
+        <li><img :src="`${baseURL}w342${production.poster_path} `" :alt="production.title"></li>
         <li v-if="title !== originalTitle">{{ originalTitle }}</li>
         <li>
             <img v-if="hasFlag" :src="flagSrc" :alt="production.original_language">
