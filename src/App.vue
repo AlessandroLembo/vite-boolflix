@@ -1,7 +1,6 @@
 <script>
 import axios from 'axios';
-import { baseUri } from './data';
-import { apiKey } from './data';
+import { api } from '.data';
 import { store } from './data/store.js';
 import AppHeader from './components/AppHeader.vue';
 
