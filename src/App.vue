@@ -66,19 +66,9 @@ export default {
     <app-header @word-change="onContentFilterChange" placeholder="Search content"
         @start-research="fetchFilteredContent"></app-header>
     <h1>MOVIES</h1>
-    <ul v-for="movie in store.movies" :key="movie.id">
-        <li>LISTA</li>
-        <li>{{ movie.original_title }}</li>
-        <li v-if="movie.title !== movie.original_title">{{ movie.title }}</li>
-        <li>
-            <figure>
-                <img v-if="movie.original_language === 'en'" src="./assets/flags/en.png" alt="en">
-                <img v-else-if="movie.original_language === 'it'" src="./assets/flags/it.png" alt="it">
-                <p v-else> {{ movie.original_language }} </p>
-            </figure>
-        </li>
-        <li>{{ movie.vote_average }}</li>
-    </ul>
+
+    <h1>SERIE TV</h1>
+
 
 </template>
 
