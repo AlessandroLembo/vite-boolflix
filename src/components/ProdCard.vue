@@ -3,14 +3,19 @@ export default {
     name: 'ProdCard',
     props: {
         production: Object
+    },
+    compued: {
+        title() {
+            return this.production.title || this.production.name;
+        },
     }
 }
 </script>
 
 <template>
     <ul>
-        <li>{{ movie.original_title }}</li>
-        <li v-if="movie.title !== movie.original_title">{{ movie.title }}</li>
+        <li>{{ title }}</li>
+        <li v-if="title !== original_title">{{ original_title }}</li>
         <li>
             <figure>
                 <img v-if="movie.original_language === 'en'" src="./assets/flags/en.png" alt="en">
