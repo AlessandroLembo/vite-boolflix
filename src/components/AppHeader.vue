@@ -8,8 +8,8 @@ export default {
             this.$emit('start-research');
         },
 
-        changeWord(prod) {
-            this.$emit('word-change', prod);
+        changeWord(word) {
+            this.$emit('word-change', word);
         }
     },
 

@@ -1,6 +1,6 @@
 <script>
 import axios from 'axios';
-import { api } from './data/index.js';
+import { api } from './data';
 import { store } from './data/store.js';
 import AppHeader from './components/AppHeader.vue';
 import ProdCard from './components/ProdCard.vue';
@@ -11,33 +11,30 @@ export default {
     data() {
         return {
             store,
-            contentFilter: ''
-
+            titleFilter: ''
         }
     },
-
     computed: {
         axiosConfig() {
             const { key, language } = api;
             return {
                 params: {
                     api_key: key,
-                    query: this.contentFilter,
+                    query: this.titleFilter,
                     language: language
                 }
             }
         }
+
     },
-
     methods: {
-
-        onContentFilterChange(prod) {
-            this.titleFilter = prod
+        onTitleFilterChange(product) {
+            this.titleFilter = product
         },
 
-        fetchFilteredContent(content) {
-            // store.isLoading = true;
-            if (!content) {
+        fetchFilteredContent() {
+            store.isLoading = true;
+            if (!this.titleFilter) {
                 store.movies = [];
                 store.series = [];
                 return;
@@ -46,29 +43,32 @@ export default {
             this.fetchApi('search/movie', 'movies');
             this.fetchApi('search/tv', 'series')
 
+
         },
 
-        fetchApi(endpoint, product) {
+        fetchApi(endpoint, collection) {
             axios.get(`${api.baseUri}/${endpoint}`, this.axiosConfig)
                 .then((res) => {
-                    store[product] = res.data.results
+                    store[collection] = res.data.results
                 }).catch(err => { console.error(err) })
                 .then(() => { store.isLoading = false });
 
         }
+    },
 
-    }
+
+
 }
 
 </script>
 
 <template>
-    <app-header @word-change="onContentFilterChange" placeholder="Search content"
+    <app-header @word-change="onTitleFilterChange" placeholder="Search content"
         @start-research="fetchFilteredContent"></app-header>
     <h1>MOVIES</h1>
-
+    <prod-card v-for="movie in store.movies" :key="movie.id" :production="movie"></prod-card>
     <h1>SERIE TV</h1>
-
+    <prod-card v-for="serie in store.series" :key="serie.id" :production="serie"></prod-card>
 
 </template>
 
