@@ -11,37 +11,46 @@ export default {
     data() {
         return {
             store,
-            fetchApi: {
-                searchMovies: 'search/movies',
-                movies: 'movies',
-                searchSeries: 'search/tv',
-                series: 'series'
-            },
+            contentFilter: ''
 
         }
     },
+
+    computed: {
+        axiosConfig() {
+            const { key, language } = api;
+            return {
+                params: {
+                    api_key: key,
+                    query: this.contentFilter,
+                    language: language
+                }
+            }
+        }
+    },
+
     methods: {
 
         getFilteredContent(content) {
-            store.isLoading = true;
+            // store.isLoading = true;
             if (!content) {
                 store.movies = [];
                 store.series = [];
-            } else {
-                axios.get(`${baseUri}/search/movie?api_key=${apiKey}&query=${content}&language=IT-it`)
-                    .then((res) => {
-                        store.movies = res.data.results
-                    }).catch(err => { console.error(err) })
-                    .then(() => { store.isLoading = false });
-                axios.get(`${baseUri}/search/tv?api_key=${apiKey}&query=${content}&language=IT-it`)
-                    .then((res) => {
-                        store.series = res.data.results
-                    }).catch(err => { console.error(err) })
-                    .then(() => { store.isLoading = false });
-
+                return;
             }
+            // axios.get(`${baseUri}/search/movie?api_key=${apiKey}&query=${content}&language=IT-it`)
+            //     .then((res) => {
+            //         store.movies = res.data.results
+            //     }).catch(err => { console.error(err) })
+            //     .then(() => { store.isLoading = false });
+            axios.get(`${baseUri}/search/tv?api_key=${apiKey}&query=${content}&language=IT-it`)
+                .then((res) => {
+                    store.series = res.data.results
+                }).catch(err => { console.error(err) })
+                .then(() => { store.isLoading = false });
 
-        }
+        },
+
     }
 }
 
@@ -64,7 +73,7 @@ export default {
         <li>{{ movie.vote_average }}</li>
     </ul>
 
-    <h1>SERIE TV</h1>
+    <!-- <h1>SERIE TV</h1>
     <ul v-for="serie in store.series" :key="serie.id">
         <li>LISTA</li>
         <li>{{ serie.original_name }} </li>
@@ -77,7 +86,7 @@ export default {
             </figure>
         </li>
         <li>{{ serie.vote_average }}</li>
-    </ul>
+    </ul> -->
 
 </template>
 
