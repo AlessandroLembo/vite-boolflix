@@ -8,6 +8,21 @@ export default {
         title() {
             return this.production.title || this.production.name;
         },
+
+        originalTitle() {
+            return this.production.original_title || this.production.original_name;
+        },
+
+        hasFlag() {
+            const flags = ['it', 'en'];
+            return flags.includes(this.production.original_language);
+        },
+
+        flagSrc() {
+            const url = new URL(`../assets/flags/${this.production.original_language}.png`, import.meta.url)
+            return url.href;
+        }
+
     }
 }
 </script>
@@ -16,14 +31,9 @@ export default {
     <ul>
         <li>{{ title }}</li>
         <li v-if="title !== original_title">{{ original_title }}</li>
-        <li>
-            <figure>
-                <img v-if="movie.original_language === 'en'" src="./assets/flags/en.png" alt="en">
-                <img v-else-if="movie.original_language === 'it'" src="./assets/flags/it.png" alt="it">
-                <p v-else> {{ movie.original_language }} </p>
-            </figure>
-        </li>
-        <li>{{ movie.vote_average }}</li>
+
+        <li>{{ production.vote_average }}</li>
+
     </ul>
 </template>
 
