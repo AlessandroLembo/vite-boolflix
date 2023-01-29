@@ -37,6 +37,17 @@ export default {
 
 <template>
     <ul>
+        <li>
+            <ul>
+                <li>
+                    <font-awesome-icon icon="fa-solid fa-star" />
+                    <font-awesome-icon icon="fa-solid fa-star" />
+                    <font-awesome-icon icon="fa-solid fa-star" />
+                    <font-awesome-icon icon="fa-regular fa-star" />
+                    <font-awesome-icon icon="fa-regular fa-star" />
+                </li>
+            </ul>
+        </li>
         <li><img :src="`${baseURL}w342${production.poster_path} `" :alt="production.title"></li>
         <li>{{ title }}</li>
         <li v-if="title !== originalTitle">{{ originalTitle }}</li>
