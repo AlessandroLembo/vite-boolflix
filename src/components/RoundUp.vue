@@ -5,6 +5,14 @@ export default {
         production: Number
     },
 
+    computed: {
+        getVoteOneToFive() {
+            const decimalVote = Math.ceil(this.production / 2);
+            console.log(decimalVote);
+            return decimalVote;
+        },
+    }
+
 }
 </script>
 
