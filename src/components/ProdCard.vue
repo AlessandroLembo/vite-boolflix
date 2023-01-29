@@ -35,6 +35,7 @@ export default {
 
 <template>
     <ul>
+        <li><img :src="`${baseURL}w342${production.poster_path} `" :alt="production.title"></li>
         <li>{{ title }}</li>
         <li><img :src="`${baseURL}w342${production.poster_path} `" :alt="production.title"></li>
         <li v-if="title !== originalTitle">{{ originalTitle }}</li>
