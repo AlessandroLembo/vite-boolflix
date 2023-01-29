@@ -37,13 +37,13 @@ export default {
     <ul>
         <li><img :src="`${baseURL}w342${production.poster_path} `" :alt="production.title"></li>
         <li>{{ title }}</li>
-        <li><img :src="`${baseURL}w342${production.poster_path} `" :alt="production.title"></li>
         <li v-if="title !== originalTitle">{{ originalTitle }}</li>
         <li>
             <img v-if="hasFlag" :src="flagSrc" :alt="production.original_language">
             <p v-else>{{ production.original_language }}</p>
         </li>
         <li>{{ production.vote_average }}</li>
+        <li> {{ production.overview }} </li>
     </ul>
 </template>
 
