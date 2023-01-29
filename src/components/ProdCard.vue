@@ -37,17 +37,6 @@ export default {
 
 <template>
     <ul>
-        <li>
-            <ul>
-                <li>
-                    <font-awesome-icon icon="fa-solid fa-star" />
-                    <font-awesome-icon icon="fa-solid fa-star" />
-                    <font-awesome-icon icon="fa-solid fa-star" />
-                    <font-awesome-icon icon="fa-regular fa-star" />
-                    <font-awesome-icon icon="fa-regular fa-star" />
-                </li>
-            </ul>
-        </li>
         <li><img :src="`${baseURL}w342${production.poster_path} `" :alt="production.title"></li>
         <li>{{ title }}</li>
         <li v-if="title !== originalTitle">{{ originalTitle }}</li>
@@ -55,7 +44,6 @@ export default {
             <img v-if="hasFlag" :src="flagSrc" :alt="production.original_language">
             <p v-else>{{ production.original_language }}</p>
         </li>
-        <li>{{ production.vote_average }}</li>
         <round-up :production="production.vote_average"></round-up>
         <li> {{ production.overview }} </li>
     </ul>

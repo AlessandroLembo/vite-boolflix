@@ -6,31 +6,33 @@ export default {
     },
 
     data() {
-        return [
-            {
-                star: 1
-            },
-            {
-                star: 2
-            },
-            {
-                star: 3
-            },
-            {
-                star: 4
-            },
-            {
-                star: 5
-            }
-        ]
+        return {
+            stars: [
+                {
+                    star: 1
+                },
+                {
+                    star: 2
+                },
+                {
+                    star: 3
+                },
+                {
+                    star: 4
+                },
+                {
+                    star: 5
+                }
+            ]
+
+        }
 
     },
 
     computed: {
         getVoteOneToFive() {
-            const decimalVote = Math.ceil(this.production / 2);
-            console.log(decimalVote);
-            return decimalVote;
+            const vote = Math.ceil(this.production / 2);
+            return vote;
         },
     }
 
@@ -38,7 +40,12 @@ export default {
 </script>
 
 <template>
-
+    <ul>
+        <li v-for="star in stars">
+            <font-awesome-icon v-if="getVoteOneToFive < star.star" icon="fa-regular fa-star" />
+            <font-awesome-icon v-else icon="fa-solid fa-star" />
+        </li>
+    </ul>
 </template>
 
 <style>
