@@ -17,6 +17,8 @@ export default {
 </script>
 
 <template>
+
+    <!-- form to collect data -->
     <form @submit.prevent="$emit('start-research')">
         <input type="text" v-model.trim="searchValue" @keyup="$emit('word-change', searchValue)"
             :placeholder="placeholder || 'Search'">

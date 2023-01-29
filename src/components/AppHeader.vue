@@ -4,6 +4,8 @@ export default {
     name: 'AppHeader',
     components: { SearchContent },
     methods: {
+
+        // methods to pass data from search-content to App-Vue 
         askFilterContent() {
             this.$emit('start-research');
         },

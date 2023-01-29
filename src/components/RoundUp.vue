@@ -30,6 +30,7 @@ export default {
     },
 
     computed: {
+        // calculate vote one to five and round up the result
         getVoteOneToFive() {
             const vote = Math.ceil(this.production / 2);
             return vote;
@@ -40,6 +41,7 @@ export default {
 </script>
 
 <template>
+    <!-- check which icon print based on vote -->
     <ul>
         <li v-for="star in stars">
             <font-awesome-icon v-if="getVoteOneToFive < star.star" icon="fa-regular fa-star" />

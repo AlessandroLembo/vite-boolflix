@@ -15,6 +15,7 @@ export default {
         }
     },
     computed: {
+        // build string for Api calls
         axiosConfig() {
             const { key, language } = api;
             return {
@@ -28,10 +29,12 @@ export default {
 
     },
     methods: {
+        // update input value
         onTitleFilterChange(product) {
             this.titleFilter = product
         },
 
+        // check if there are characters entered in the search's field
         fetchFilteredContent() {
             store.isLoading = true;
             if (!this.titleFilter) {
@@ -46,6 +49,7 @@ export default {
 
         },
 
+        // movie's and series's Api calls
         fetchApi(endpoint, collection) {
             axios.get(`${api.baseUri}/${endpoint}`, this.axiosConfig)
                 .then((res) => {
@@ -63,10 +67,15 @@ export default {
 </script>
 
 <template>
+    <!-- receive by custom events value ​​arriving from the search's field -->
     <app-header @word-change="onTitleFilterChange" placeholder="Search content"
         @start-research="fetchFilteredContent"></app-header>
+
+    <!-- list of movies searched -->
     <h1>MOVIES</h1>
     <prod-card v-for="movie in store.movies" :key="movie.id" :production="movie"></prod-card>
+
+    <!-- list of series searched -->
     <h1>SERIE TV</h1>
     <prod-card v-for="serie in store.series" :key="serie.id" :production="serie"></prod-card>
 
