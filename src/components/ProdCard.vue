@@ -1,14 +1,16 @@
 <script>
+import RoundUp from './RoundUp.vue';
 export default {
     name: 'ProdCard',
-    props: {
-        production: Object
-    },
-
+    components: { RoundUp },
     data() {
         return {
             baseURL: 'https://image.tmdb.org/t/p/'
         }
+    },
+
+    props: {
+        production: Object
     },
 
     computed: {
@@ -43,6 +45,7 @@ export default {
             <p v-else>{{ production.original_language }}</p>
         </li>
         <li>{{ production.vote_average }}</li>
+        <round-up :production="production.vote_average"></round-up>
         <li> {{ production.overview }} </li>
     </ul>
 </template>
