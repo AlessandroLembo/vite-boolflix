@@ -80,7 +80,9 @@ export default {
         <div class="container">
             <!-- list of movies searched -->
             <h1>MOVIES</h1>
+
             <div class="row">
+                <!-- <h1>Prova a cercare un film o un aserie tv!</h1> -->
                 <prod-card v-for="movie in store.movies" :key="movie.id" :production="movie"></prod-card>
 
             </div>
