@@ -87,6 +87,9 @@ export default {
 </template>
 
 <style scoped lang="scss">
+@use '../assets/scss/partials/horizonthalAlignm' as *;
+@use '../assets/scss/partials/variables' as *;
+
 .col {
     flex-basis: 25%;
     cursor: pointer;
@@ -94,7 +97,7 @@ export default {
     padding: 1rem;
 
     .card {
-        height: 100%;
+        height: $h100;
         background-color: black;
         position: relative;
     }
@@ -102,13 +105,13 @@ export default {
 
 #poster {
     width: 100%;
-    height: 100%;
+    height: $h100;
     display: block;
 }
 
 .poster-path {
     width: 100%;
-    height: 100%;
+    height: $h100;
     object-fit: cover;
     display: block;
 }
@@ -122,7 +125,7 @@ export default {
 }
 
 .caption {
-    height: 100%;
+    height: $h100;
     width: 100%;
     z-index: 1;
     padding: 1rem;
@@ -158,8 +161,7 @@ li {
 }
 
 .stars {
-    display: flex;
-    justify-content: center;
+    @include flex-horizonthal;
     padding-top: 10px;
 
 }

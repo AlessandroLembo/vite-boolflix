@@ -29,14 +29,15 @@ export default {
 </template>    
 
 <style scoped lang="scss">
+@use '../assets/scss/partials/verticalAlignm' as *;
+
 form {
     margin-right: 2rem;
 }
 
 .search-field {
     height: 70px;
-    display: flex;
-    align-items: center;
+    @include flex-vertical;
 }
 
 input {
