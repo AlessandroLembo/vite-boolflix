@@ -50,9 +50,8 @@ export default {
     <!-- List to print on page -->
     <div class="col">
         <div class="card">
-            <li class="poster">
-                <!-- <img :src="`${baseURL}w342${production.poster_path} `" :alt="production.title"> -->
-                <img :src="posterPath" :alt="production.title">
+            <li>
+                <img :src="posterPath" :alt="production.title" class="poster">
             </li>
 
             <div class="caption">
@@ -90,13 +89,36 @@ export default {
         display: flex;
         justify-content: center;
         align-items: center;
+
+        position: relative;
     }
+}
+
+.poster {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.card:hover .poster {
+    opacity: 0;
+    display: none;
+}
+
+.card:hover .caption {
+    opacity: 1;
 }
 
 .caption {
     height: 100%;
     width: 100%;
-    display: none;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    opacity: 0;
+    transition: 3s ease-in-out 1s;
 }
 
 ul {
