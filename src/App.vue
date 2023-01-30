@@ -78,20 +78,20 @@ export default {
 
     <main>
         <div class="container">
+
+            <h1 v-if="store.movies.length">MOVIES</h1>
+            <h1 v-else class="start-research">Prova a cercare un film o una serie tv!</h1>
+
             <!-- list of movies searched -->
-            <h1>MOVIES</h1>
-
             <div class="row">
-                <!-- <h1>Prova a cercare un film o un aserie tv!</h1> -->
                 <prod-card v-for="movie in store.movies" :key="movie.id" :production="movie"></prod-card>
-
             </div>
 
+            <h1 v-if="store.series.length">SERIE TV</h1>
+
             <!-- list of series searched -->
-            <h1>SERIE TV</h1>
             <div class="row">
                 <prod-card v-for="serie in store.series" :key="serie.id" :production="serie"></prod-card>
-
             </div>
         </div>
     </main>

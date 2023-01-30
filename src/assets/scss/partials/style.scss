@@ -20,7 +20,6 @@ main{
         color: white;
         font-size: 45px;
         padding: 1.5rem 1rem;
-        display: none;
     }
 }
 
@@ -29,16 +28,17 @@ main{
     margin: 0 auto;
 }
 
+.start-research{
+    display: flex;
+    justify-content: center;
+}
+
 .row{
     display: flex;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
     padding-bottom: 4rem;
-
-    h1{
-        display: block;
-    }
 }
 
 img{
