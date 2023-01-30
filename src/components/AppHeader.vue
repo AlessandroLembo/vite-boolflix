@@ -29,11 +29,12 @@ export default {
 </template>
 
 <style scoped lang="scss">
+@use '../assets/scss/partials/verticalAlignm' as *;
+
 .header-container {
     height: 100px;
-    display: flex;
+    @include flex-vertical;
     justify-content: space-between;
-    align-items: center;
 
     h1 {
         color: red;

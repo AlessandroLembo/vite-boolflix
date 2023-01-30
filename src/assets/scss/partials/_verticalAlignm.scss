@@ -1,0 +1,5 @@
+/* Mixins vertical alignment */
+@mixin flex-vertical {
+    display: flex;
+    align-items: center;
+}

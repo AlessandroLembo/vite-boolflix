@@ -71,7 +71,7 @@ export default {
                                 <img v-if="hasFlag" :src="flagSrc" :alt="production.original_language" class="flag">
                                 <p v-else>{{ production.original_language }}</p>
                             </li>
-                            <li class="stars-space">
+                            <li>
                                 <round-up :production="production.vote_average" class="stars"></round-up>
                             </li>
                         </ul>
@@ -95,7 +95,6 @@ export default {
 
     .card {
         height: 100%;
-        border: 1px solid black;
         background-color: black;
         position: relative;
     }
@@ -134,7 +133,7 @@ export default {
     right: 0;
     left: 0;
     opacity: 0;
-    transition: 2s ease-in-out 2s;
+    transition: 1s linear 1s;
 }
 
 .caption-list {
@@ -166,10 +165,6 @@ li {
 }
 
 .flag-space {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
     .flag {
         height: 80px;
     }
