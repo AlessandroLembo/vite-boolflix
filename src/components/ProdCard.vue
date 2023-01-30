@@ -93,60 +93,45 @@ export default {
     .card {
         height: 100%;
         border: 1px solid black;
-        // padding: 1rem;
-        display: flex;
-        justify-content: center;
-        align-items: center;
         background-color: black;
         position: relative;
     }
 }
 
 #poster {
+    width: 100%;
     height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    // border: 1px solid black;
-    // padding: 1rem;
+    display: block;
 }
 
 .poster-path {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    // border: 1px solid black;
     display: block;
 }
 
-// .poster {
-//     display: block;
-//     width: 100%;
-//     height: auto;
-// }
+.card:hover .poster-path {
+    opacity: 0;
+}
 
-// .card:hover .poster {
-//     opacity: 0;
-//     display: none;
-// }
-
-// .card:hover .caption {
-//     opacity: 1;
-// }
+.card:hover .caption {
+    opacity: 1;
+}
 
 .caption {
     height: 100%;
     width: 100%;
     z-index: 1;
     padding: 1rem;
-    display: none;
-    // position: absolute;
-    // top: 0;
-    // bottom: 0;
-    // right: 0;
-    // left: 0;
-    // opacity: 0;
-    // transition: 2s ease-in-out 2s;
+
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    opacity: 0;
+    transition: 2s ease-in-out 2s;
 }
 
 .caption-list {
@@ -175,7 +160,6 @@ li {
 }
 
 .flag-space {
-    // height: 180px;
     display: flex;
     justify-content: center;
     align-items: center;
