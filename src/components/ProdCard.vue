@@ -50,10 +50,13 @@ export default {
     <!-- List to print on page -->
     <div class="col">
         <div class="card">
+
+            <!-- movie's and serie's poster -->
             <li id="poster">
                 <img :src="posterPath" :alt="production.title" class="poster-path">
             </li>
 
+            <!-- description of content -->
             <div class="caption">
                 <ul class="caption-list">
                     <li>
@@ -140,9 +143,11 @@ export default {
 
 .title {
     font-size: 22px;
+    padding-bottom: 10px;
 
     .subtitle {
         font-size: 18px;
+        padding-bottom: 10px;
     }
 
 }
@@ -156,6 +161,7 @@ li {
 .stars {
     display: flex;
     justify-content: center;
+    padding-top: 10px;
 
 }
 
