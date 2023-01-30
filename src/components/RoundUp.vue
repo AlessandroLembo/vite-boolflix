@@ -42,7 +42,7 @@ export default {
 
 <template>
     <!-- check which icon print based on vote -->
-    <ul>
+    <ul class="star-list">
         <li v-for="star in stars">
             <font-awesome-icon v-if="getVoteOneToFive < star.star" icon="fa-regular fa-star" />
             <font-awesome-icon v-else icon="fa-solid fa-star" />
@@ -50,6 +50,16 @@ export default {
     </ul>
 </template>
 
-<style>
+<style scoped lang="scss">
+.star-list {
+    display: flex;
 
+    li {
+        list-style-type: none;
+    }
+}
+
+.fa-star {
+    color: yellow;
+}
 </style>
