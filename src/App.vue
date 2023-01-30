@@ -81,6 +81,6 @@ export default {
 
 </template>
 
-<style>
-
+<style lang="scss">
+@use './assets/scss/partials/style.scss';
 </style>
