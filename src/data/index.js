@@ -4,5 +4,10 @@ const api = {
     baseUri: 'https://api.themoviedb.org/3/'
     
     }
+
+const pics = {
+    baseUrl: 'https://image.tmdb.org/t/p/w342',
+    placeholder: 'https://www.altavod.com/assets/images/poster-placeholder.png'
+}
     
-    export { api };
+    export { api, pics };

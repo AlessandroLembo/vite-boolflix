@@ -1,5 +1,6 @@
 <script>
 import RoundUp from './RoundUp.vue';
+import { pics } from '../data';
 export default {
     name: 'ProdCard',
     components: { RoundUp },
@@ -35,6 +36,11 @@ export default {
         flagSrc() {
             const url = new URL(`../assets/flags/${this.production.original_language}.png`, import.meta.url)
             return url.href;
+        },
+
+        posterPath() {
+            if (!this.production.poster_path) return pics.placeholder;
+            return pics.baseUrl + this.production.poster_path;
         }
     }
 }
@@ -44,7 +50,10 @@ export default {
     <!-- List to print on page -->
     <div class="col">
         <div class="card">
-            <!-- <li><img :src="`${baseURL}w342${production.poster_path} `" :alt="production.title"></li> -->
+            <li class="poster">
+                <!-- <img :src="`${baseURL}w342${production.poster_path} `" :alt="production.title"> -->
+                <img :src="posterPath" :alt="production.title">
+            </li>
 
             <div class="caption">
                 <ul class="caption-list">
@@ -71,29 +80,27 @@ export default {
     flex-basis: 25%;
     padding: 0.5rem;
     cursor: pointer;
+    height: 500px;
 
     .card {
-        height: 400px;
+        height: 100%;
         border: 1px solid black;
         padding: 20px 0;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 }
 
 .caption {
     height: 100%;
     width: 100%;
-    position: relative;
-
-
+    display: none;
 }
 
 ul {
     width: 100%;
-    height: 200px;
-    z-index: 1;
-    position: absolute;
-    top: 0;
-    left: 0;
 
     .title {
         font-size: 25px;
@@ -102,18 +109,15 @@ ul {
 }
 
 li {
-    // display: none;
     list-style-type: none;
     text-align: center;
     color: white;
 }
 
 .stars {
-    position: absolute;
-    left: 50%;
-    transform: translate(-14%);
-    top: 230px;
-    height: 20px;
+    display: flex;
+    justify-content: center;
+
 }
 
 .flag-space {
@@ -128,10 +132,6 @@ li {
 }
 
 .overview {
-    position: absolute;
-    top: 250px;
-    left: 0;
-    height: calc(100% - 250px);
     overflow-y: auto;
     padding: 20px 10px;
     text-align: center;
