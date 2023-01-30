@@ -20,10 +20,25 @@ export default {
 </script>
 
 <template>
-    <search-content @start-research="askFilterContent" @word-change="changeWord"></search-content>
+    <div class="header-container">
+        <h1>BOOLFIX</h1>
+        <search-content @start-research="askFilterContent" @word-change="changeWord"></search-content>
+
+    </div>
 
 </template>
 
-<style>
+<style scoped lang="scss">
+.header-container {
+    height: 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 
+    h1 {
+        color: red;
+        font-size: 40px;
+        margin-left: 2rem;
+    }
+}
 </style>

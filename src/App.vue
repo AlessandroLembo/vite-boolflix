@@ -67,18 +67,32 @@ export default {
 </script>
 
 <template>
-    <!-- receive by custom events value ​​arriving from the search's field -->
-    <app-header @word-change="onTitleFilterChange" placeholder="Search content"
-        @start-research="fetchFilteredContent"></app-header>
 
-    <!-- list of movies searched -->
-    <h1>MOVIES</h1>
-    <prod-card v-for="movie in store.movies" :key="movie.id" :production="movie"></prod-card>
+    <header>
+        <div class="container">
+            <!-- receive by custom events value ​​arriving from the search's field -->
+            <app-header @word-change="onTitleFilterChange" placeholder="Search content"
+                @start-research="fetchFilteredContent"></app-header>
+        </div>
+    </header>
 
-    <!-- list of series searched -->
-    <h1>SERIE TV</h1>
-    <prod-card v-for="serie in store.series" :key="serie.id" :production="serie"></prod-card>
+    <main>
+        <div class="container">
+            <!-- list of movies searched -->
+            <h1>MOVIES</h1>
+            <div class="row">
+                <prod-card v-for="movie in store.movies" :key="movie.id" :production="movie"></prod-card>
 
+            </div>
+
+            <!-- list of series searched -->
+            <h1>SERIE TV</h1>
+            <div class="row">
+                <prod-card v-for="serie in store.series" :key="serie.id" :production="serie"></prod-card>
+
+            </div>
+        </div>
+    </main>
 </template>
 
 <style lang="scss">
