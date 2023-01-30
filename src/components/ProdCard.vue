@@ -50,21 +50,30 @@ export default {
     <!-- List to print on page -->
     <div class="col">
         <div class="card">
-            <li>
-                <img :src="posterPath" :alt="production.title" class="poster">
+            <li id="poster">
+                <img :src="posterPath" :alt="production.title" class="poster-path">
             </li>
 
             <div class="caption">
                 <ul class="caption-list">
-                    <li class="title">{{ title }}</li>
-                    <li v-if="title !== originalTitle" class="title">{{ originalTitle }}</li>
+                    <li>
+                        <ul class="title">
+                            <li>{{ title }}</li>
+                            <li v-if="title !== originalTitle" class="subtitle">{{ originalTitle }}</li>
+                        </ul>
+                    </li>
                     <li class="flag-space">
-                        <img v-if="hasFlag" :src="flagSrc" :alt="production.original_language" class="flag">
-                        <p v-else>{{ production.original_language }}</p>
+                        <ul>
+                            <li>
+                                <img v-if="hasFlag" :src="flagSrc" :alt="production.original_language" class="flag">
+                                <p v-else>{{ production.original_language }}</p>
+                            </li>
+                            <li class="stars-space">
+                                <round-up :production="production.vote_average" class="stars"></round-up>
+                            </li>
+                        </ul>
                     </li>
-                    <li class="stars-space">
-                        <round-up :production="production.vote_average" class="stars"></round-up>
-                    </li>
+
                 </ul>
 
                 <p class="overview">{{ production.overview }}</p>
@@ -77,55 +86,78 @@ export default {
 <style scoped lang="scss">
 .col {
     flex-basis: 25%;
-    padding: 0.5rem;
     cursor: pointer;
     height: 500px;
+    padding: 1rem;
 
     .card {
         height: 100%;
         border: 1px solid black;
-        padding: 20px 0;
-
+        // padding: 1rem;
         display: flex;
         justify-content: center;
         align-items: center;
-
+        background-color: black;
         position: relative;
     }
 }
 
-.poster {
-    display: block;
+#poster {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    // border: 1px solid black;
+    // padding: 1rem;
+}
+
+.poster-path {
     width: 100%;
-    height: auto;
+    height: 100%;
+    object-fit: cover;
+    // border: 1px solid black;
+    display: block;
 }
 
-.card:hover .poster {
-    opacity: 0;
-    display: none;
-}
+// .poster {
+//     display: block;
+//     width: 100%;
+//     height: auto;
+// }
 
-.card:hover .caption {
-    opacity: 1;
-}
+// .card:hover .poster {
+//     opacity: 0;
+//     display: none;
+// }
+
+// .card:hover .caption {
+//     opacity: 1;
+// }
 
 .caption {
     height: 100%;
     width: 100%;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    left: 0;
-    opacity: 0;
-    transition: 3s ease-in-out 1s;
+    z-index: 1;
+    padding: 1rem;
+    display: none;
+    // position: absolute;
+    // top: 0;
+    // bottom: 0;
+    // right: 0;
+    // left: 0;
+    // opacity: 0;
+    // transition: 2s ease-in-out 2s;
 }
 
-ul {
-    width: 100%;
+.caption-list {
+    height: 250px;
+}
 
-    .title {
-        font-size: 25px;
+.title {
+    font-size: 22px;
+
+    .subtitle {
+        font-size: 18px;
     }
 
 }
@@ -143,20 +175,31 @@ li {
 }
 
 .flag-space {
-    height: 100%;
+    // height: 180px;
     display: flex;
     justify-content: center;
     align-items: center;
 
     .flag {
-        height: 100px;
+        height: 80px;
+    }
+
+    p {
+        font-size: 20px;
+        padding: 10px 0;
     }
 }
 
 .overview {
+    height: 250px;
     overflow-y: auto;
+    margin-top: 20px;
     padding: 20px 10px;
     text-align: center;
     color: white;
+
+    position: absolute;
+    bottom: 0;
+    left: 0;
 }
 </style>
