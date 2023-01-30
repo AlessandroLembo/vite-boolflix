@@ -42,19 +42,43 @@ export default {
 
 <template>
     <!-- List to print on page -->
-    <ul>
-        <li><img :src="`${baseURL}w342${production.poster_path} `" :alt="production.title"></li>
-        <li>{{ title }}</li>
-        <li v-if="title !== originalTitle">{{ originalTitle }}</li>
-        <li>
-            <img v-if="hasFlag" :src="flagSrc" :alt="production.original_language">
-            <p v-else>{{ production.original_language }}</p>
-        </li>
-        <round-up :production="production.vote_average"></round-up>
-        <li> {{ production.overview }} </li>
-    </ul>
+    <div class="col">
+        <div class="card">
+            <li><img :src="`${baseURL}w342${production.poster_path} `" :alt="production.title"></li>
+
+            <div class="caption">
+                <ul>
+                    <li>{{ title }}</li>
+                    <li v-if="title !== originalTitle">{{ originalTitle }}</li>
+                    <li>
+                        <img v-if="hasFlag" :src="flagSrc" :alt="production.original_language">
+                        <p v-else>{{ production.original_language }}</p>
+                    </li>
+                    <li>
+                        <round-up :production="production.vote_average"></round-up>
+                    </li>
+                    <li> {{ production.overview }} </li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
 </template>
 
-<style>
+<style scoped lang="scss">
+.col {
+    flex-basis: 25%;
+    padding: 0.5rem;
+    cursor: pointer;
+}
 
+.caption li {
+    display: none;
+}
+
+
+
+li {
+    list-style-type: none;
+}
 </style>
