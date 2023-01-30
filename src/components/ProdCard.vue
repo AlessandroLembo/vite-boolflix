@@ -120,10 +120,6 @@ export default {
     opacity: 0;
 }
 
-.card:hover .caption {
-    opacity: 1;
-}
-
 .caption {
     height: $h100;
     width: 100%;
@@ -136,7 +132,12 @@ export default {
     right: 0;
     left: 0;
     opacity: 0;
-    transition: 1s linear 1s;
+    transition: 3s linear 1s;
+}
+
+.card:hover .caption {
+    opacity: 1;
+
 }
 
 .caption-list {
@@ -181,7 +182,7 @@ li {
     height: 250px;
     overflow-y: auto;
     margin-top: 20px;
-    padding: 20px 10px;
+    padding: 20px;
     text-align: center;
     color: white;
 
